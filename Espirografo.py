@@ -124,9 +124,9 @@ def main():
         if opcion == 1:
             dibujarEspirografoPre()
         elif opcion == 2:
-            r = int(input("Escriba el valor de r"))
-            R = int(input("Escriba el valor de R"))
-            l = float(input("Escriba el valor de l"))
+            r = int(input("Escriba el valor de r: "))
+            R = int(input("Escriba el valor de R: "))
+            l = float(input("Escriba el valor de l: "))
             dibujar(r, R, l)
         else:
             print("")
