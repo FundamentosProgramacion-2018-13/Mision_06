@@ -16,7 +16,7 @@ ROJO = (255, 0, 0)      # solo rojo, nada de verde, nada de azul
 AZUL = (0, 0, 255)      # nada de rojo, ni verde, solo azul
 
 
-# Estructura básica de un programa que usa pygame para dibujar
+# Recibe r, R y l como parámetros para dibujar con el espirógrafo en la ventana
 def dibujarConEspirografo(r, R, l, ventana):
     k = r / R
 
@@ -30,6 +30,7 @@ def dibujarConEspirografo(r, R, l, ventana):
         pygame.draw.circle(ventana, (random1, random2, random3), ((x + ALTO // 2), (ANCHO // 2 + y)), 1)
 
 
+# Función básica para dibujar
 def dibujar(r, R, l):
     # Inicializa el motor de pygame
     pygame.init()
@@ -56,7 +57,7 @@ def dibujar(r, R, l):
     pygame.quit()  # termina pygame
 
 
-# Función principal, aquí resuelves el problema
+# Función principal, lee los valores de r, R y l para mandarlos a las otras funciones
 def main():
     r = int(input("Teclea el valor de r: "))
     R = int(input("Teclea el valor de R:  "))
