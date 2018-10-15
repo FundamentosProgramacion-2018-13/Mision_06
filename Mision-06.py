@@ -1,60 +1,78 @@
 # encoding: UTF-8
 # Autor: Diego Palmerín Bonada, A01747290
-# Descripción: Hacer un espirógrafo
-
+# Descripción: Oh no, ya mamó
 
 # Importar librerías necesarias
 import pygame
-import random
 from math import *
 
-def dibujar(r, R, l):
-    # Colores
-    blanco = (248, 248, 248)
-    negro = (38, 38, 38)
 
-    # Ajustes iniciales de PyGame
-    pygame.init()
+# Colores
+blanco = (248, 248, 248)
+negro = (38, 38, 38)
 
-    Ancho = 800
-    Alto = 800
+# Ajustes iniciales de PyGame
+pygame.init()
 
-    win = pygame.display.set_mode((Ancho, Alto))
+Ancho = 700
+Alto = 700
 
-    pygame.display.set_caption("Mision 6")
+win = pygame.display.set_mode((Ancho, Alto))
 
-    win.fill(blanco)
+pygame.display.set_caption("Mision 6")
 
-    k = r/R
-    periodo = int(r // (r*R))
+win.fill(negro)
 
-    for angulo in range(0, periodo, 1):
-        a = radians(angulo)
-        x = R*(l-k)*cos(a)+(l*k*cos((l-k)*cos(a)/k))
-        y = R*(l-k)*sin(a)-(l*k*sin((l-k)*a/k))
-        pygame.draw.circle(win, negro, (int(x+Ancho//2), int(Alto//2-y)), int(r), 1)
+
+def dibujar(R, r, l, c):
+    periodo = r // gcd(r, R)
+    l = int((1/l)*40)
+
+    for t in range(0, 360 * periodo):
+        if c == 0:
+            color = 248, 38, 38
+        elif c == 1:
+            color = 38, 38, 248
+        elif c == 2:
+            color = 38, 248, 38
+        else:
+            color = 248, 248, 248
+
+        x = ((R - r) * cos(r / R * t)) + l * cos((1 - (r / R)) * t)
+        y = ((R - r) * sin(r / R * t)) - l * sin((1 - (r / R)) * t)
+
+        pygame.draw.circle(win, color, (int(x + Ancho // 2), int(Alto // 2 - y)), 1)
 
     pygame.display.update()
 
-    run = True
-
-    reloj = pygame.time.Clock()
-
-    # Lógica de pygame que básicamente es la función main pero en tiempo real
-    while run:
-        reloj.tick(4)  # Para salvar al planeta
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-                pygame.quit()
-
 
 def main():
-    r = float(input("r: "))
-    R = float(input("R: "))
+    R = int(input("R: "))
+    r = int(input("r: "))
     l = float(input("l: "))
-    dibujar(r, R, l)
+    c = float(input("c: "))
+    dibujar(R, r, l, c)
 
 
 main()
+
+run = True
+
+reloj = pygame.time.Clock()
+
+# Lógica de pygame que básicamente es la función main pero en tiempo real
+while run:
+    reloj.tick(10)  # Para salvar al planeta
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+            pygame.quit()
+
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_ESCAPE]:
+            run = False
+
+        if keys[pygame.K_SPACE]:
+            main()
