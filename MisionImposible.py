@@ -1,6 +1,6 @@
 # encoding: UTF-8
 #Autor: María Fernanda Vela Calderón
-#Misión imposible: dibujar un espirografo con ecuaciones paramétricas
+#Misión imposible: dibujar un espirografo con ecuaciones paramétricas.
 
 import pygame
 import random
