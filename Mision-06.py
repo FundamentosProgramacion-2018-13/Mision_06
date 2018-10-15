@@ -1,6 +1,6 @@
 # encoding: UTF-8
 # Autor: Diego Palmerín Bonada, A01747290
-# Descripción: Oh no, ya mamó
+# Descripción: Espirógrafo
 
 # Importar librerías necesarias
 import pygame
