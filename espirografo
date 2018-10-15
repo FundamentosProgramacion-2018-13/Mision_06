@@ -1,0 +1,57 @@
+#Diego Armando Ayala Hernández
+#A01376727
+#Programa en dond eel usuario da 3 valores para crear su propia mandala. En base a un espirografo
+import pygame   # Librería de pygame
+import math#libreria de matemáticas
+import random
+
+# Dimensiones de la pantalla
+ANCHO = 800
+ALTO = 800
+# Colores
+BLANCO = (255, 255, 255)  
+ROJO = (255, 0, 0)      
+AZUL = (0,0,255) 
+VERDE = (0,255,0)
+NARANJA = (255,128,0)
+COLORS = [AZUL, NARANJA, VERDE, ROJO]
+
+def dibujar(r, R, l):
+    pygame.init()
+    ventana = pygame.display.set_mode((ANCHO, ALTO))
+    reloj = pygame.time.Clock()
+    termina = False
+    while not termina:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                termina = True
+        ventana.fill(BLANCO)
+        k = r/R
+        for angulo in range(0, 360 * r//math.gcd(r, R)):
+            color1 = (136, 78, 160)
+            color2 = (93, 173, 226)
+            color3 = (46, 134, 193)
+            color4 = (91, 44, 111)
+            colorList = []
+            colorList.append(color1)
+            colorList.append(color2)
+            colorList.append(color3)
+            colorList.append(color4)
+            angulo = math.radians(angulo) # Se convierten a radianes.
+            x = int(R*(((1-k)*math.cos(angulo))+((l*k)*math.cos((((1 - k)/(k)) * angulo))))) #Fórmula valor x.
+            y = int(R*(((1-k)*math.sin(angulo))-((l*k)*math.sin((((1 - k)/(k)) * angulo))))) #Fórmula valor y.
+            pygame.draw.circle(ventana, random.choice(colorList), ((x + ALTO // 2) , (ANCHO // 2 + y)), 1)
+        pygame.display.flip()
+        reloj.tick(60)
+    pygame.quit()
+#Le pide al usuario los valores r,R y l. y comprueba que sean valores mayores que 0
+
+def main():
+    r = int(float(input("Escriba el valor de r: ")))
+    R = int(float(input("Escriba el valor de R: ")))
+    l = float(input("Escriba el valor de L: "))
+    if r == 0 or R == 0:
+        print("Escriba otro número ")
+        main()
+    dibujar(r, R, l)
+main()
