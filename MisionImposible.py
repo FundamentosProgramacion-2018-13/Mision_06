@@ -1,5 +1,5 @@
 # encoding: UTF-8
-#Autor: María Fernanda Vela Calderón
+#Autor: María Fernanda Vela Calderón/ A01377958/ Grupo 04
 #Misión imposible: dibujar un espirografo con ecuaciones paramétricas.
 
 import pygame
