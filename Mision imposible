@@ -1,0 +1,148 @@
+#Sebasstian Macias Ibarra - A01376492
+#Crear  una imagen que parece creada por un espirógrafo con ayuda de los ciclos
+
+import pygame   # Librería de pygame
+import math
+
+# Dimensiones de la pantalla
+ANCHO = 1400
+ALTO = 800
+# Colores
+BLANCO = (255, 255, 255)  # R,G,B en el rango [0,255], 0 ausencia de color, 255 toda la intensidad
+AZUL_Ex = (29, 30, 150)    # un poco de rojo, un poco de verde, más de azul
+TURQUESA = (63, 136, 143)      # UN POCO DE ROJO, NIVELES DE VERDE Y AZUL SIMILAR
+AZUL = (0, 0, 255)      # nada de rojo, ni verde, solo azul
+NEGRO = (0, 0, 0)       # Ausencia de color
+CELESTE = (34, 113, 179)
+
+
+def dibujarFiguraExperimental(r, R, l, k,periodo, ventana):
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = int(math.radians(angulo))
+        puntoX = int(R * (((5 - k) * math.cos(angulo)) - (l * k * math.cos(((1 - k) * k) * (angulo)))))
+        puntoY = int(R * (((5 - k) * math.sin(angulo)) + (l * k * math.sin(((1 - k) * k) * (angulo)))))
+        pygame.draw.circle(ventana, AZUL, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(R * ((2 - k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(R * ((2 - k) * math.sin(angulo) - (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, AZUL, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(R * ((5 * k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(R * ((1 * k) * math.sin(angulo) - (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, CELESTE, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(R * ((1 * k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(R * ((5 * k) * math.sin(angulo) - (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, CELESTE, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+
+    for angulo in range(0, 360 * (R//math.gcd(r, R)), 1):
+        angulo = math.radians(angulo)
+        puntoX = int(200 * ((1 * k) * math.cos(angulo) + (l / k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(200 * ((5 * k) * math.sin(angulo) - (l / k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, AZUL_Ex, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = int(math.radians(angulo))
+        puntoX = int(150 * (((1-k) * math.cos(angulo)) + (l * k * math.cos(((1-k) / k) * (angulo)))))
+        puntoY = int(150 * (((1-k) * math.sin(angulo)) - (l * k * math.sin(((1-k) / k) * (angulo)))))
+        pygame.draw.circle(ventana, NEGRO, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(150 * ((1 - k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(150 * ((1 - k) * math.sin(angulo) - (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, NEGRO, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = int(math.radians(angulo))
+        puntoX = int(150 * (((1 - k) * math.cos(angulo)) + (l * k * math.cos(((1 - k) / k) * (angulo)))))
+        puntoY = int(150 * (((1 - k) * math.sin(angulo)) + (l * k * math.sin(((1 - k) / k) * (angulo)))))
+        pygame.draw.circle(ventana, NEGRO, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(150 * ((1 - k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(150 * ((1 - k) * math.sin(angulo) + (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, NEGRO, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = int(math.radians(angulo))
+        puntoX = int(50 * (((1 - k) * math.cos(angulo)) + (l * k * math.cos(((1-k) / k) * (angulo)))))
+        puntoY = int(50 * (((1 - k) * math.sin(angulo)) - (l * k * math.sin(((1-k) / k) * (angulo)))))
+        pygame.draw.circle(ventana, TURQUESA, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(50 * ((1 - k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(50 * ((1 - k) * math.sin(angulo) - (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, TURQUESA, (puntoX + ANCHO // 2, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(100 * ((1 - k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(100 * ((1 - k) * math.sin(angulo) + (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, TURQUESA, (puntoX + ANCHO // 4, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = int(math.radians(angulo))
+        puntoX = int(100 * (((1 - k) * math.cos(angulo)) + (l * k * math.cos(((1 - k) / k) * (angulo)))))
+        puntoY = int(100 * (((1 - k) * math.sin(angulo)) + (l * k * math.sin(((1 - k) / k) * (angulo)))))
+        pygame.draw.circle(ventana, TURQUESA, (puntoX + 3*ANCHO // 4, ALTO // 2 - puntoY), 1)
+
+    for angulo in range(0, 360 * periodo, 1):
+        angulo = math.radians(angulo)
+        puntoX = int(100 * ((1 - k) * math.cos(angulo) + (l * k * math.cos(((1 - k) / k) * angulo))))
+        puntoY = int(100 * ((1 - k) * math.sin(angulo) + (l * k * math.sin(((1 - k) / k) * angulo))))
+        pygame.draw.circle(ventana, TURQUESA, (puntoX + 3*ANCHO // 4, ALTO // 2 - puntoY), 1)
+
+
+def dibujar(r, R, l):
+    # Inicializa el motor de pygame
+    pygame.init()
+    # Crea una ventana de ANCHO x ALTO
+    ventana = pygame.display.set_mode((ANCHO, ALTO))  # Crea la ventana donde dibujará
+    reloj = pygame.time.Clock()  # Para limitar los fps
+    termina = False  # Bandera para saber si termina la ejecución, iniciamos suponiendo que no
+
+    while not termina:  # Ciclo principal, MIENTRAS la variable termina sea False, el ciclo se repite automáticamente
+        # Procesa los eventos que recibe
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:  # El usuario hizo click en el botón de salir
+                termina = True      # Queremos terminar el ciclo
+
+        # Borrar pantalla
+        ventana.fill(BLANCO)
+
+        periodo = r//math.gcd(r, R)
+        k = r / R
+
+        dibujarFiguraExperimental(r, R, l, k,periodo, ventana)
+
+        pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
+        reloj.tick(40)  # 40 fps
+
+    # Después del ciclo principal
+    pygame.quit()  # termina pygame
+
+
+# Función principal, aquí resuelves el problema
+def main():
+    radioMenor = 65
+    radioMayor = 220
+    l = 0.8
+    dibujar(radioMenor, radioMayor, l)   # Por ahora, solo dibuja
+
+
+# Llamas a la función principal
+main()
