@@ -1,6 +1,6 @@
 # encoding: UTF-8
-# Autor: Roberto Martínez Román
-# Muestra cómo utilizar pygame en programas que dibujan en la pantalla
+# Autor: David Isaí López Jaimes
+# Muestar la figura de un espirógrafo
 
 import pygame   # Librería de pygame
 import math
