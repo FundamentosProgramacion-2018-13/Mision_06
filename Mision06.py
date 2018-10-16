@@ -17,22 +17,23 @@ NEGRO = (0, 0, 0)
 def color():
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
-def obtenerX(variableR, variabler, variablel)
+# La siguiente función realiza las operaciones necesarias para dibujar la figura.
+def dibujarCirculos(ventana, variableR, r, l):
+    k = (r / variableR)
+    anguloFormula = ((1 - k) / k)
+    periodoCirculo = r // math.gcd(r, variableR)
+    periodoCompleto = periodoCirculo * 360
 
-def dibujarCirculos(variableR, variabler, variablel, color, angulo):
-    periodo = variabler // math.gcd(variabler, variableR)
-    o = math.radians(angulo)
-    k = variabler / variableR
-    x = variableR((variablel - k)*math.cos(o)+variablel*k*math.cos((variablel-k/k)*o))
-    y = variableR((variablel - k)*math.sin(o)-variablel*k*math.sin((variablel-k/k)*o))
-
-
-    for h in range(0, 360 * periodo):
+    for angulo in range(0, periodoCompleto + 1, 1):
+        valorAngulo = math.radians(angulo)
+        x = int(variableR * ((1 - k) * (math.cos(valorAngulo)) + l * k * math.cos(valorAngulo * anguloFormula)))
+        y = int(variableR * ((1 - k) * (math.sin(valorAngulo)) - l * k * math.sin(valorAngulo * anguloFormula)))
+        pygame.draw.circle(ventana, color(), (x + ANCHO // 2, ALTO // 2 - y), 1)
 
 
 
-# Estructura básica de un programa que usa pygame para dibujar
-def dibujar():
+# La siguiente función abre una ventana y dibuja la figura usando los calculos anteriores.
+def dibujar(r, variableR, l):
     # Inicializa el motor de pygame
     pygame.init()
     # Crea una ventana de ANCHO x ALTO
@@ -48,33 +49,18 @@ def dibujar():
 
         # Borrar pantalla
         ventana.fill(BLANCO)
-
-        # Dibujar, aquí haces todos los trazos que requieras
-        # Normalmente llamas a otra función y le pasas -ventana- como parámetro, por ejemplo, dibujarLineas(ventana)
-        # Consulta https://www.pygame.org/docs/ref/draw.html para ver lo que puede hacer draw
-        radio = 100
-        for angulo in range(0, 360 + 1, 1):
-            a = math.radians(angulo)  # Convierte a radianes
-            x = int(radio * math.cos(a))
-            y = int(radio * math.sin(a))
-            pygame.draw.circle(ventana, color, (x + ANCHO // 2, ALTO // 2 - y), 1)
+        dibujarCirculos(ventana, r, variableR, l)
 
         pygame.display.flip()  # Actualiza trazos (Si no llamas a esta función, no se dibuja)
         reloj.tick(40)  # 40 fps
-
-    # Después del ciclo principal
-    pygame.quit()  # termina pygame
+    pygame.quit()
 
 
-# Función principal, aquí resuelves el problema
 def main():
-    dibujar()   # Por ahora, solo dibuja
-    variableR = float(input("Teclea el valor de R: "))
-    variabler = float(input("Teclea el valor de r: "))
-    variablel = float(input("Teclea el valor de l: "))
-
-
-
+    r = int(input("Teclea el valor de r: "))
+    variableR = int(input("Teclea el valor de R: "))
+    l = float(input("Teclea el valor de l: "))
+    dibujar(r, variableR, l)
 
 
 # Llamas a la función principal
