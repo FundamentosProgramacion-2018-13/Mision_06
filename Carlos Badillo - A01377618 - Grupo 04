@@ -1,0 +1,48 @@
+#   Carlos Badillo García
+#   Programa que dibuja una mandala con el uso de un espirografo
+
+import pygame
+import random
+import math
+
+ancho = 800
+alto = 800
+blanco = (255, 255, 255)
+
+
+def dibujarEspirografo(r, R, l): # Función para dibujar la mandala
+    pygame.init()
+    pantalla = pygame.display.set_mode((ancho, alto))
+    reloj = pygame.time.Clock()
+    terminar = False
+
+    while not terminar:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                terminar = True
+
+        pantalla.fill(blanco)
+
+        aleatorio = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+        k = (r/R)
+        for angulo in range(0, 361 * (r//math.gcd(r, R))):
+            a = math.radians(angulo)
+            x = int(R * ((1 - k) * math.cos(a) + l * k * math.cos(((1 - k) / k) * a)))
+            y = int(R * ((1 - k) * math.sin(a) - l * k * math.sin(((1 - k) / k) * a)))
+            pygame.draw.circle(pantalla, aleatorio, (x + 400, 400 - y), 1)
+
+        pygame.display.flip()
+        reloj.tick(40)
+
+    pygame.quit()
+
+
+def main(): #Función que pide los valores de "r", "R" y "l" al usuario.
+
+    r = int(input("Inserte valor de r: "))
+    R = int(input("Inserte valor de R: "))
+    l = float(input("Inserte valor de l: "))
+    dibujarEspirografo(r, R, l)
+
+
+main()
